@@ -19,14 +19,14 @@
                 </tr>
             </thead>
             <tbody v-if="products">
-                <tr v-for="product in products" :key="product.id">
+                <tr v-for="product in products" :key="product.productID">
                     <td>{{ product.productID }}</td>
                     <td>{{ product.Name }}</td>
                     <td><img id="productimg" :src="product.Image" alt=""></td>
                     <td>{{ product.Information }}</td>
                     <td>{{ product.Category }}</td>
                     <td>R{{ product.Price }}</td>
-                    <td><button data-bs-toggle="modal" :data-bs-target="'edit'+product.productID"><i class="fa-solid fa-pen"></i></button></td>
+                    <td><button data-bs-toggle="modal" :data-bs-target="'#edit'+product.productID"><i class="fa-solid fa-pen"></i></button></td>
                     <td><button @click="$store.dispatch('deleteProduct', product.productID)"><i
                                 class="fa-solid fa-trash-can"></i></button></td>
                 </tr>
@@ -65,7 +65,9 @@
 </div>
 
 <!-- Edit Module -->
-<div :id="'edit'+product.productID" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+<div v-if="products">
+<div v-for="product in products" :key="product.productID">
+<div :id="'edit' + product.productID" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -92,6 +94,9 @@
     </div>
   </div>
 </div>
+</div>
+</div>
+
 </template>
 
 <style scoped>
@@ -107,6 +112,7 @@
 
 <script>
 export default {
+    props : ['product'],
     mounted() {
         this.$store.dispatch('getProducts');
     },
@@ -136,7 +142,9 @@ export default {
                 Price:this.Price
             })
         },
-        
+        edit() {
+            return this.$store.dispatch("editProduct", this.product)
+        }
         
     }
 }
