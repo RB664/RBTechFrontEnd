@@ -35,15 +35,23 @@ export default createStore({
         .then(data => context.state.product = data.product)
         .then(() => context.dispatch('getProducts'));
     },
-    addProduct: async (context, id) => {
-      fetch('https://rbtech.herokuapp.com/products', {
+    addProduct: async (context, payload) => {
+      const{
+        Name,
+        Image,
+        Information,
+        Category,
+        Price
+      } =payload
+
+      fetch('https://rbtech.herokuapp.com/products/', {
           method: 'POST',
           body: JSON.stringify({
-            Name,
-            Image,
-            Information,
-            Category,
-            Price
+            Name:Name,
+            Image:Image,
+            Information:Information,
+            Category:Category,
+            Price:Price
           }),
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -51,7 +59,21 @@ export default createStore({
         })
         .then(data => context.state.product = data.product)
         .then(() => context.dispatch('getProducts'));
-    }
+    },
+    editProduct: async (context, product) => {
+      fetch(`https://rbtech.herokuapp.com/products/${product.productID}`, {
+        method: "PUT",
+        body: JSON.stringify(product),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data.msg)
+        context.dispatch("getProducts")
+      })
+    } 
   },
 
   modules: {}
