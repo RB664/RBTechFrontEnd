@@ -89,7 +89,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" @click="edit" data-bs-dismiss="modal">Edit Product</button>
+        <button type="button" class="btn btn-primary" :data-bs-target="'#edit' + product.productID"  data-bs-dismiss="modal">Edit Product</button>
       </div>
     </div>
   </div>

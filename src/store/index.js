@@ -60,17 +60,18 @@ export default createStore({
         .then(data => context.state.product = data.product)
         .then(() => context.dispatch('getProducts'));
     },
-    editProduct: async (context, product) => {
-      fetch(`http://rbtech.herokuapp.com/products/${id}` , {
+    editProduct(context, product) {
+      fetch(`http://rbtech.herokuapp.com/products/${product.productID}` , {
         method: "PUT",
         body: JSON.stringify(product),
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         }
       })
-      .then((res) => res.json())
+      .then((editProduct) => editProduct.
+      json())
       .then((data) => {
-        alert(data.msg)
+        console.log(data);
         context.dispatch("getProducts")
       })
     } 
