@@ -16,7 +16,7 @@
             <div class="modal-body">
               <div class="row">
                   <div class="col-md-6 mx-auto mb-3">
-                    <label for="gpuNoA" class="form-label">Name:</label>
+                    <label for="Name" class="form-label">Name:</label>
                     <input
                       type="text"
                       class="modal-title"

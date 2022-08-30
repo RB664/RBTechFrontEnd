@@ -11,6 +11,9 @@ export default createStore({
   mutations: {
     stateProducts(state, products) {
       state.products = products
+    },
+    stateProduct(state, product) {
+      state.product = product
     }
   },
   actions: {
