@@ -15,7 +15,7 @@ export default createStore({
   },
   actions: {
     getProducts: async (context) => {
-      fetch("http://localhost:4023/products")
+      fetch("http://rbtech.herokuapp.com/products")
         .then((res) => res.json())
         .then((data) => {
           context.state.products = data.products
@@ -61,7 +61,7 @@ export default createStore({
         .then(() => context.dispatch('getProducts'));
     },
     editProduct: async (context, product) => {
-      fetch(`http://localhost:4023/products/${id}` , {
+      fetch(`http://rbtech.herokuapp.com/products/${id}` , {
         method: "PUT",
         body: JSON.stringify(product),
         headers: {
