@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="home" class="container">
+    <h1 id="welcoming">Welcome to RBTech</h1>
+   <router-link to="/home"><button>Go to HomePage</button></router-link> 
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+<style scoped>
+#home{
+  text-align: center;
+  color: white;
+}
+#welcoming{
+  margin-top:300px;
+  font-size:75px ;
+}
+</style>
 
+<script>
+    import Navbar from '../components/Navagation.vue'
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+    components : {
+        Navbar
+    }
 }
 </script>

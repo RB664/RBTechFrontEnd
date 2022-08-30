@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+    <Navbar/>
+    <div id="allproducts" class="container">
         <div v-if="products">
             <div v-for="product of products" :key="product.id" class="card">
         <router-link :to="{ name:'singleproduct', params: {id: product.productID}}">
@@ -13,8 +14,19 @@
     </div>
 </template>
 
+<style scoped>
+    #allproducts{
+        margin-top: 100px;
+        text-align: center;
+    }
+</style>
+
 <script>
-export default{
+import Navbar from '../components/Navagation.vue';
+export default {
+    components : {
+        Navbar
+    },
     computed: {
         products() {
             return this.$store.state.products

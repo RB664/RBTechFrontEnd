@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+  <Navbar/>
+    <div id="admin" class="container">
         <table class="table">
             <thead>
                 <tr>
@@ -13,7 +14,7 @@
                     <th>Delete</th>
                     <th>
                         <button data-bs-toggle="modal"
-                            data-bs-target="#addproduct"><i class="fa-solid fa-plus"></i>
+                            data-bs-target="#exampleModal"><i class="fa-solid fa-plus"></i>
                         </button>
                     </th>
                 </tr>
@@ -26,7 +27,7 @@
                     <td>{{ product.Information }}</td>
                     <td>{{ product.Category }}</td>
                     <td>R{{ product.Price }}</td>
-                    <td><button data-bs-toggle="modal" :data-bs-target="'#edit' + product.productID"><i class="fa-solid fa-pen"></i></button></td>
+                    <td><button data-bs-toggle="modal" :data-bs-target="'#edit'+product.productID"><i class="fa-solid fa-pen"></i></button></td>
                     <td><button @click="$store.dispatch('deleteProduct', product.productID)"><i
                                 class="fa-solid fa-trash-can"></i></button></td>
                 </tr>
@@ -36,7 +37,7 @@
 
     </div>
 <!--Add Modal -->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -62,7 +63,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- Edit Module -->
 <!-- <table>
@@ -105,17 +106,18 @@
             
           </button>
         </td>
+        <editModal :product="product" />
       </tr>
     </tbody>
     <div v-else>No products</div>
   </table> -->
-  <editModal :product="product" />
-  <addModal :product="product" />
 </template>
 
 <style scoped>
 .table {
     border: 1px black;
+    color: white;
+    margin-top: 100px;
 }
 
 #productimg {
@@ -126,11 +128,11 @@
 
 <script>
   import editModal from "../components/editmodal.vue";
-  import addModal from "../components/addmodal.vue"
-export default {
-  components : {
-    editModal,
-    addModal
+  import Navbar from '../components/Navagation.vue'
+  export default {
+    components : {
+    Navbar,
+    editModal
   },
     mounted() {
         this.$store.dispatch('getProducts');
@@ -141,26 +143,26 @@ export default {
         },
 
     },
-//     data(){
-//         return{
-//             Name: null,
-//             Image: null,
-//             Information: null,
-//             Category: null,
-//             Price: null
-//         };
+    data(){
+        return{
+            Name: null,
+            Image: null,
+            Information: null,
+            Category: null,
+            Price: null
+        };
         
-//     },
-//     methods: {
-//         add(){
-//             return this.$store.dispatch("addProduct", {
-//                 Name:this.Name,
-//                 Image:this.Image,
-//                 Information:this.Information,
-//                 Category:this.Category,
-//                 Price:this.Price
-//             })
-//         },
-//     }
+    },
+    methods: {
+        add(){
+            return this.$store.dispatch("addProduct", {
+                Name:this.Name,
+                Image:this.Image,
+                Information:this.Information,
+                Category:this.Category,
+                Price:this.Price
+            })
+        },
+    }
 }
 </script>

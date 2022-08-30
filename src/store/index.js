@@ -5,7 +5,9 @@ import {
 export default createStore({
   state: {
     products: null,
-    product: null
+    product: null,
+    msg : null,
+    admin : false
   },
   getters: {},
   mutations: {
@@ -14,9 +16,21 @@ export default createStore({
     },
     stateProduct(state, product) {
       state.product = product
-    }
+    },
+    stateUser(state, user) {
+      state.user = user;
+      localStorage.setItem('user', JSON.stringify(user))
+    },
   },
   actions: {
+    admincheck: (context) => {
+      let user = context.state.user
+      if (user != null) {
+        if (user.userRole === "admin") {
+          context.state.admin = true
+        }
+      }
+    },
     getProducts: async (context) => {
       fetch("http://rbtech.herokuapp.com/products")
         .then((res) => res.json())
@@ -77,8 +91,37 @@ export default createStore({
         console.log(data);
         context.dispatch("getProducts")
       })
-    } 
+    },
+    register: async (context, data) => {
+      console.log("Sup")
+      await fetch('http://rbtech.herokuapp.com/user/register', {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+          }
+        })
+        .then(res => res.json())
+        .then(userData => context.state.msg = userData.msg)
+    },
+    login : async (context, data) => {
+      fetch(`http://localhost:4023/user/login`,{
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        let user = data.results
+        console.log(user)
+        context.commit("stateUser", user);
+        if (user.Role === "Admin") {
+          context.state.admin = true
+        }
+      });
   },
-
+      },
   modules: {}
 })
