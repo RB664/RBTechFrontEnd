@@ -13,6 +13,7 @@
             </div>
         </div>
     </div>
+    <Footer/>
 </template>
 
 <style scoped>
@@ -23,15 +24,18 @@
     #singleproduct{
         text-align: center;
         margin-top: 150px;
+        margin-bottom: 150px;
     }
 </style>
 
 <script>
     import Navbar from '../components/Navagation.vue'
+    import Footer from '../components/Footing.vue'
     export default {
         props: ['productID'],
         components : {
-            Navbar
+            Navbar,
+            Footer
         },
         mounted() {
             this.$store.dispatch("getProduct",

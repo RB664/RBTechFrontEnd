@@ -17,10 +17,5 @@
 </style>
 
 <script>
-    import Navbar from '../components/Navagation.vue'
-export default {
-    components : {
-        Navbar
-    }
-}
+   
 </script>

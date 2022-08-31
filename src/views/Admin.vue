@@ -1,6 +1,6 @@
 <template>
   <Navbar/>
-    <div id="admin" class="container">
+    <div id="admin" class="container-fluid">
         <table class="table">
             <thead>
                 <tr>
@@ -27,7 +27,7 @@
                     <td>{{ product.Information }}</td>
                     <td>{{ product.Category }}</td>
                     <td>R{{ product.Price }}</td>
-                    <td><button data-bs-toggle="modal" :data-bs-target="'#edit'+product.productID"><i class="fa-solid fa-pen"></i></button></td>
+                    <td><button data-bs-toggle="modal" :data-bs-target="edit+product.productID"><i class="fa-solid fa-pen"></i></button></td>
                     <td><button @click="$store.dispatch('deleteProduct', product.productID)"><i
                                 class="fa-solid fa-trash-can"></i></button></td>
                 </tr>
@@ -66,51 +66,7 @@
 </div>
 
 <!-- Edit Module -->
-<!-- <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-                    <th>Name</th>
-                    <th>Image</th>
-                    <th>Information</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                    <th>
-                        <button data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"><i class="fa-solid fa-plus"></i>
-                        </button>
-                    </th>
-      </tr>
-    </thead>
-    <tbody v-if="products">
-      <tr v-for="product in products" :key="product.productID" scope="row">
-        <td>{{ product.productID }}</td>
-        <td>
-          <div v-if="product.Image">
-            <img :src="product.Image" alt="" class="img-fluid">
-          </div>
-        </td>
-        <td>{{ Name.Name }}</td>
-        <td>{{ Information.Information }}</td>
-        <td>{{ Category.Category }}</td>
-        <td>{{ Price.Price }}</td>
-        <td>
-          <button
-            type="button"
-            class="btn btn-primary"
-            data-bs-toggle="modal"
-            :data-bs-target="'#edit' + product.productID"
-          >
-            
-          </button>
-        </td>
-        <editModal :product="product" />
-      </tr>
-    </tbody>
-    <div v-else>No products</div>
-  </table> -->
+<editModal/>
 </template>
 
 <style scoped>
@@ -118,6 +74,7 @@
     border: 1px black;
     color: white;
     margin-top: 100px;
+    left:50%;
 }
 
 #productimg {

@@ -1,7 +1,7 @@
 <template>
     <Navbar/>
     <div id="allproducts" class="container">
-        <div v-if="products">
+            <div v-if="products" class="row" id="productsrow">
             <div v-for="product of products" :key="product.id" class="card">
         <router-link :to="{ name:'singleproduct', params: {id: product.productID}}">
         <img :src="product.Image" alt="">
@@ -12,20 +12,36 @@
         </div>
         </div>
     </div>
+    <Footer/>
 </template>
 
 <style scoped>
+    #productsrow{
+        gap: 50px;
+        justify-content: center;
+    }
+    img{
+        width: 270px;
+        height: 255px;
+    }
+    .card{
+        width: 289px;
+        height: 350px;
+    }
     #allproducts{
         margin-top: 100px;
         text-align: center;
+        margin-bottom: 150px;
     }
 </style>
 
 <script>
 import Navbar from '../components/Navagation.vue';
+import Footer from '../components/Footing.vue'
 export default {
     components : {
-        Navbar
+        Navbar,
+        Footer
     },
     computed: {
         products() {

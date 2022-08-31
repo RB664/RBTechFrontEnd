@@ -1,13 +1,13 @@
 <template>        
 <nav class="navbar fixed-top">
   <div class="container-fluid">
-    <router-link to="/" class="navbar-brand">RBTech</router-link>
+    <router-link to="/" class="navbar-brand" id="logo">RBTech</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button id="close" type="button" class="btn-close text-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -51,14 +51,22 @@
         text-align: center;
         color: white;
     }
+    .nav-link{
+      color: white;
+    }
     li:hover:not(.active){
         background-color: #3A0055;
     }
     nav a.router-link-exact-active {
         background-color: #380250;
   color:white;
+  text-decoration: underline;
+  font-weight:bold ;
 } 
 .offcanvas-body{
     background-color: #280037;
+}
+#logo{
+  font-weight: bolder;
 }
 </style>
