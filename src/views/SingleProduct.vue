@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <h2>{{product[0].Name}}</h2>
                 <p>{{product[0].Information}}</p>
-                <p>Price: R{{product[0].Price}}</p>
+                <p id="price">Price: R{{product[0].Price}}</p>
                 <button>Add to Cart</button>
             </div>
         </div>
@@ -25,6 +25,10 @@
         text-align: center;
         margin-top: 150px;
         margin-bottom: 150px;
+        color: white;
+    }
+    #price{
+        text-decoration: none;
     }
 </style>
 

@@ -16,7 +16,7 @@
     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Please enter your Password">
   </div>
   <button class="btn form-control" type="submit">Register</button>
-  <div><p>Already got registered click here to <router-link to="/login">Login</router-link></p></div>
+  <div><p>Already registered click here to <router-link to="/login">Login</router-link></p></div>
 </form>
 </div>
 <Footer/>

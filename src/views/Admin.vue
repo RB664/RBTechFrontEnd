@@ -20,14 +20,14 @@
                 </tr>
             </thead>
             <tbody v-if="products">
-                <tr v-for="product in products" :key="product.productID">
+                <tr v-for="product in products" :key="product">
                     <td>{{ product.productID }}</td>
                     <td>{{ product.Name }}</td>
                     <td><img id="productimg" :src="product.Image" alt=""></td>
                     <td>{{ product.Information }}</td>
                     <td>{{ product.Category }}</td>
                     <td>R{{ product.Price }}</td>
-                    <td><button data-bs-toggle="modal" :data-bs-target="edit+product.productID"><i class="fa-solid fa-pen"></i></button></td>
+                    <td><button data-bs-toggle="modal" :data-bs-target="'#edit'+product.productID"><i class="fa-solid fa-pen"></i></button></td>
                     <td><button @click="$store.dispatch('deleteProduct', product.productID)"><i
                                 class="fa-solid fa-trash-can"></i></button></td>
                 </tr>
@@ -65,8 +65,12 @@
   </div>
 </div>
 
+<div v-if="products">
+    <div v-for="product in products" :key="product">
+        <editModal :product="product" />
+    </div>
+</div>
 <!-- Edit Module -->
-<editModal/>
 </template>
 
 <style scoped>

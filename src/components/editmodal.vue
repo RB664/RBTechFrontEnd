@@ -51,7 +51,7 @@
                   type="text"
                   class="modal-title"
                   id="Category"
-                  v-model="product.category"
+                  v-model="product.Category"
                   placeholder="Product Category"
                 />
               </div>

@@ -14,7 +14,7 @@
                     placeholder="Please enter Password" name="Password" id="Password" v-model="Password" />
             </div>
             <div v-if="clicked">
-                <div v-if="User">
+                <div v-if="user">
                     Logged in
                 </div>
                 <div v-else>
@@ -66,9 +66,9 @@ export default {
     methods: {
         login() {
             const user = {
-                Email: this.Email,
-                Password: this.Password,
-            };
+                email: this.Email,
+                password: this.Password,
+            }
             this.clicked = true
             this.$store.dispatch("login", user);
         },
