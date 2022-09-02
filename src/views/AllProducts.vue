@@ -1,6 +1,7 @@
 <template>
     <Navbar/>
     <div id="allproducts" class="container">
+        
             <div v-if="products" class="row" id="productsrow">
             <div v-for="product of products" :key="product.id" class="card">
         <router-link :to="{ name:'singleproduct', params: {id: product.productID}}">

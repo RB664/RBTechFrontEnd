@@ -8,8 +8,10 @@ export default createStore({
     product: null,
     msg: null,
     admin: false,
-    user: null || JSON.parse(localStorage.getItem('user'))
+    user: null || JSON.parse(localStorage.getItem('user')),
+    cart : null
   },
+  
   getters: {},
   mutations: {
     stateProducts(state, products) {
@@ -27,9 +29,7 @@ export default createStore({
     admincheck: (context) => {
       let user = context.state.user
       if (user != null) {
-        if (user.userRole === "admin") {
-          context.state.admin = true
-        }
+        context.dispatch('getcart')
       }
     },
     getProducts: async (context) => {
@@ -41,7 +41,7 @@ export default createStore({
         })
     },
     getProduct: async (context, id) => {
-      fetch(`https://rbtech.herokuapp.com/products/${id}`)
+      fetch(`http://localhost:4023/products/${id}`)
         .then((res) => res.json())
         .then(data => context.state.product = data.product)
         .then(console.log(context.state.product));
@@ -62,7 +62,7 @@ export default createStore({
         Price
       } = payload
 
-      fetch('https://rbtech.herokuapp.com/products/', {
+      fetch('https://localhost:4023/products/', {
           method: 'POST',
           body: JSON.stringify({
             Name: Name,
@@ -93,18 +93,18 @@ export default createStore({
           context.dispatch("getProducts")
         })
     },
-    register: async (context, data) => {
-      console.log("Sup")
-      await fetch('http://rbtech.herokuapp.com/user/register', {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
-        })
-        .then(res => res.json())
-        .then(userData => context.state.msg = userData.msg)
-    },
+    // register: async (context, data) => {
+    //   console.log("Sup")
+    //   await fetch('http://rbtech.herokuapp.com/user/register', {
+    //       method: "POST",
+    //       body: JSON.stringify(data),
+    //       headers: {
+    //         'Content-type': 'application/json; charset=UTF-8'
+    //       }
+    //     })
+    //     .then(res => res.json())
+    //     .then(userData => context.state.msg = userData.msg)
+    // },
     //   login : async (context, data) => {
     //     fetch(`http://localhost:4023/user/login`,{
     //       method: "POST",
@@ -123,7 +123,7 @@ export default createStore({
     //       }
     //     });
     // },
-    regitser: async (context, payload) => {
+    register: async (context, payload) => {
       await fetch("http://localhost:4023/user/register", {
           method: "POST",
           headers: {
@@ -135,8 +135,10 @@ export default createStore({
         })
         .then(res => res.json())
         .then((data) => {
-          context.commit('stateUser', data)
-          console.log(data);
+          // context.commit('stateUser', data)
+          console.log(data)
+          console.log(data.msg)
+          context.state.msg = data.msg
         })
     },
     login: async (context, payload) => {
@@ -151,12 +153,13 @@ export default createStore({
         })
         .then(res => res.json())
         .then((data) => {
-          context.commit('stateUser', data)
+          context.commit('stateUser', data.user[0])
           console.log(data);
         })
     },
     getcart: async (context, id) => {
-      // id = context.state.user.id
+      id = context.state.user.userID
+      // console.log(id);
       await fetch("http://localhost:4023/user/" + id + "/cart", {
           method: "GET",
           headers: {
@@ -168,12 +171,14 @@ export default createStore({
         .then((data) => {
           console.log(data)
           if (data != null) {
-            context.commit("setcart", JSON.parse(data));
+            context.state.cart = (data);
+          } else {
+            context.state.cart = null;
           }
         });
     },
     addCart: async (context, item, id) => {
-      id = context.state.user.id;
+      id = context.state.user.userID;
       console.log(item);
       await fetch("http://localhost:4023/user/" + id + "/cart", {
           method: "POST",
@@ -186,10 +191,11 @@ export default createStore({
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          context.dispatch("cart", id);
+          context.dispatch("getcart");
         });
     },
     clearCart: async (context, id) => {
+      id = context.state.user.userID;
       await fetch("http://localhost:4023/user/" + id + "/cart", {
           method: "DELETE",
           headers: {
@@ -200,13 +206,14 @@ export default createStore({
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          context.dispatch("cart", id);
+          context.dispatch("getcart");
         });
     },
     deleteCart: async (context, list, id) => {
-      id = context.state.user.id;
+      id = context.state.user.userID;
+      console.log(list);
       await fetch(
-          "http://localhost:4023/user/" + id + "/cart/" + list.cartid, {
+          "http://localhost:4023/user/" + id + "/cart/" + list.cart_id, {
             method: "DELETE",
             headers: {
               "Content-type": "application/json; charset=UTF-8",
@@ -217,7 +224,7 @@ export default createStore({
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
-          context.dispatch("getcart", id);
+          context.dispatch("getcart");
         });
     },
   },

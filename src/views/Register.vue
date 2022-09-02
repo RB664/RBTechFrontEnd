@@ -2,19 +2,30 @@
   <Navbar/>
 <div id="register" class="container-fluid">
     <h1>Register</h1>
-    <form>
+    <form @submit.prevent="register">
   <div class="mb-3 mt-4">
     <label for="exampleInputName1" class="form-label">Name</label>
-    <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp" placeholder="Please enter your name">
+    <input type="text" class="form-control"  id="Name" name="Name" aria-describedby="nameHelp" placeholder="Please enter your name" v-model="Name">
   </div>
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Please enter your Email">
+    <input type="email" class="form-control" id="Email" name="Email" aria-describedby="emailHelp" placeholder="Please enter your Email" v-model="Email">
 </div>
 <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Please enter your Password">
+    <input type="password" class="form-control" id="Password" name="Password" placeholder="Please enter your Password" v-model="Password">
   </div>
+  <div v-if="msg">
+    {{msg}}
+  </div>
+  <!-- <div v-if="clicked">
+    <div v-if="user">
+      You have registered
+    </div>
+    <div v-else>
+      Insufficient data
+    </div>
+  </div> -->
   <button class="btn form-control" type="submit">Register</button>
   <div><p>Already registered click here to <router-link to="/login">Login</router-link></p></div>
 </form>
@@ -44,6 +55,30 @@
     components : {
       Navbar,
       Footer
-    }
-  }
+    },
+    data() {
+        return {
+            Name: "",
+            Email: "",
+            Password: "",
+            clicked: false
+        };
+    },
+    computed: {
+        msg() {
+            return this.$store.state.msg;
+        },
+    },
+    methods: {
+        register() {
+            const user = {
+              Name : this.Name,
+              Email: this.Email,
+              Password: this.Password,
+            }
+            this.clicked = true
+            this.$store.dispatch("register", user);
+        },
+    },
+};
 </script>

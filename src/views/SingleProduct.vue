@@ -9,7 +9,7 @@
                 <h2>{{product[0].Name}}</h2>
                 <p>{{product[0].Information}}</p>
                 <p id="price">Price: R{{product[0].Price}}</p>
-                <button>Add to Cart</button>
+                <button @click="this.$store.dispatch('addCart',product[0])">Add to Cart</button>
             </div>
         </div>
     </div>
@@ -45,7 +45,11 @@
             this.$store.dispatch("getProduct",
             this.$route.params.id)
         },
-
+        methods : {
+            add(){
+                this.$store.dispatch('addCart',this.id)
+            }
+        },
     computed: {
         product(){
             return this.$store.state.product
