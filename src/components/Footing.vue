@@ -20,7 +20,7 @@
   }
   i{
     margin-top: 20px;
-    font-size: x-large;
+    font-size:large;
     margin: 10px;
   }
 </style>

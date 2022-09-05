@@ -8,8 +8,10 @@ export default createStore({
     product: null,
     msg: null,
     admin: false,
+    users : null,
     user: null || JSON.parse(localStorage.getItem('user')),
-    cart : null
+    cart : null,
+    singleUser : null
   },
   
   getters: {},
@@ -32,6 +34,29 @@ export default createStore({
         context.dispatch('getcart')
       }
     },
+    getUsers: async (context) => {
+      fetch("http://localhost:4023/user")
+      .then((res) => res.json())
+      .then((data) => {
+        context.state.users = data.users
+        console.log(context.state.users)
+      })
+    },
+    getUser: async (context, id) => {
+      fetch(`http://localhost:4023/user/${id}`)
+        .then((res) => res.json())
+        .then(data => context.state.singleUser = data.user)
+      },
+    deleteUser: async (context, id) => {
+      await fetch(`http://localhost:4023/user/${id}`, {
+          method: 'DELETE',
+        })
+        .then(data => data.json())
+        .then((data) => {
+          console.log(data.msg  )
+          context.dispatch('getUsers')
+        });
+    },
     getProducts: async (context) => {
       fetch("http://localhost:4023/products")
         .then((res) => res.json())
@@ -47,7 +72,7 @@ export default createStore({
         .then(console.log(context.state.product));
     },
     deleteProduct: async (context, id) => {
-      await fetch(`https://rbtech.herokuapp.com/products/${id}`, {
+      await fetch(`http://localhost:4023/products/${id}`, {
           method: 'DELETE',
         })
         .then(data => context.state.product = data.product)
@@ -62,7 +87,7 @@ export default createStore({
         Price
       } = payload
 
-      fetch('https://localhost:4023/products/', {
+      fetch('http://localhost:4023/products/', {
           method: 'POST',
           body: JSON.stringify({
             Name: Name,
@@ -93,36 +118,6 @@ export default createStore({
           context.dispatch("getProducts")
         })
     },
-    // register: async (context, data) => {
-    //   console.log("Sup")
-    //   await fetch('http://rbtech.herokuapp.com/user/register', {
-    //       method: "POST",
-    //       body: JSON.stringify(data),
-    //       headers: {
-    //         'Content-type': 'application/json; charset=UTF-8'
-    //       }
-    //     })
-    //     .then(res => res.json())
-    //     .then(userData => context.state.msg = userData.msg)
-    // },
-    //   login : async (context, data) => {
-    //     fetch(`http://localhost:4023/user/login`,{
-    //       method: "POST",
-    //       body: JSON.stringify(data),
-    //       headers: {
-    //         'Content-type': 'application/json; charset=UTF-8'
-    //       }
-    //     })
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //       let user = data.results
-    //       console.log(user)
-    //       context.commit("stateUser", user);
-    //       if (user.Role === "Admin") {
-    //         context.state.admin = true
-    //       }
-    //     });
-    // },
     register: async (context, payload) => {
       await fetch("http://localhost:4023/user/register", {
           method: "POST",

@@ -15,7 +15,7 @@
               <input type="text" class="modal-title" id="Name" v-model="product.Name" placeholder="Product Name" />
             </div>
             <div class="col-md-6 mx-auto mb-3">
-              <label for="Image" class="form-label">Product:</label>
+              <label for="Image" class="form-label">Image</label>
               <input type="text" class="modal-title" id="Image" v-model="product.Image" placeholder="Product Image" />
             </div>
             <div class="col-md-6 mx-auto mb-3">

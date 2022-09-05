@@ -2,12 +2,11 @@
   <nav class="navbar fixed-top">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand" id="logo">RBTech</router-link>
-          <!-- Button trigger modal -->
           <button type="button" id="cartbtn" data-bs-toggle="modal" :data-bs-target="'#cart'"><i class="fa-solid fa-cart-shopping"></i></button>
           
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar">
-        <span class="navbar-toggler-icon"></span>
+        <span id="toggler" class="navbar-toggler-icon"></span>
       </button>
       <div class="offcanvas offcanvas-end fw-bolder" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
@@ -36,6 +35,12 @@
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/admin">Admin</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/userprofile">Userprofile</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" to="/users">Users</router-link>
             </li>
           </ul>
         </div>
@@ -87,6 +92,12 @@ nav a.router-link-exact-active {
         right: 5%;
         top: 20%;
     }
+    .navbar-toggler-icon{
+      
+    }
+.navbar-toggler{
+  background-color:#EFEFEF;
+}
 </style>
 
 <script>
