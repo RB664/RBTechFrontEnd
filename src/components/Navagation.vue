@@ -86,17 +86,69 @@ nav a.router-link-exact-active {
 
 #logo {
   font-weight: bolder;
+  
 }
 #cartbtn{
         position: absolute;
         right: 5%;
-        top: 20%;
-    }
-    .navbar-toggler-icon{
-      
+        top: 13%;
+        width: 60px;
+        height: 42px;
+        border-radius:10% ;
     }
 .navbar-toggler{
   background-color:#EFEFEF;
+}
+
+@media only screen and (min-width:300px) and (max-width:320px) {
+  #cartbtn{
+        right: 25%;
+    }
+}
+@media only screen and (min-width:320px) and (max-width: 375px) {
+  #cartbtn{
+        right: 22%;
+    }
+}
+@media only screen and (min-width:375px) and (max-width: 425px) {
+  #cartbtn{
+        right: 22%;
+    }
+}
+@media only screen and (min-width:425px) and (max-width: 500px) {
+  #cartbtn{
+        right: 18%;
+    }
+}
+@media only screen and (min-width:500px) and (max-width: 600px) {
+  #cartbtn{
+        right: 15%;
+    }
+}
+@media only screen and (min-width:600px) and (max-width: 768px) {
+  #cartbtn{
+        right: 12%;
+    }
+}
+@media only screen and (min-width:768px) and (max-width: 850px) {
+  #cartbtn{
+        right: 10%;
+    }
+}
+@media only screen and (min-width:850px) and (max-width: 950px) {
+  #cartbtn{
+        right: 10%;
+    }
+}
+@media only screen and (min-width:950px) and (max-width: 1024px) {
+  #cartbtn{
+        right: 10%;
+    }
+}
+@media only screen and (min-width:1024px) and (max-width: 1440px) {
+  #cartbtn{
+        right: 8%;
+    }
 }
 </style>
 

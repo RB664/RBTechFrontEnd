@@ -11,8 +11,11 @@
                 Logout
             </button>
         </div>
-
+        <div v-else>
+        Login to View your Profile
     </div>
+    </div>
+    
     <Footer />
 </template>
 
@@ -56,6 +59,10 @@ img {
     text-align: center;
     background-color: black;
     color: white;
+    margin-bottom: 70px;
 }
 
+#users{
+    margin-top: 100px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template>
   <Navbar/>
-<div id="register" class="container-fluid">
+<div id="register" class="container">
     <h1>Register</h1>
     <form @submit.prevent="register">
   <div class="mb-3 mt-4">

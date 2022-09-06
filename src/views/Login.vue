@@ -15,10 +15,10 @@
             </div>
             <div v-if="clicked">
                 <div v-if="user">
-                    Logged in
+                    You Logged in
                 </div>
                 <div v-else>
-                    Wrong data
+                    Information is wrong
                 </div>
             </div>
             <button class="btn form-control" type="submit">Login</button>

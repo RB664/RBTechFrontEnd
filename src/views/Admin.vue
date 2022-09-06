@@ -1,6 +1,6 @@
 <template>
   <Navbar/>
-    <div id="admin" class="container-fluid">
+    <div id="admin" class="container">
         <table class="table">
             <thead>
                 <tr>

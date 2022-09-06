@@ -1,6 +1,6 @@
 <template>
   <Navbar/>
-  <div id="About" class="container-fluid">
+  <div id="About" class="container">
     <h1>About</h1>
     <div id="about" class="container">
       <p>RBTech is an online PC store.You can buy Laptops,Workstations,PC Components and Gaming PC's.</p>
