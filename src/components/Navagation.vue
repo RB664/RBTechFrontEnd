@@ -2,7 +2,7 @@
   <nav class="navbar fixed-top">
     <div class="container-fluid">
       <router-link to="/" class="navbar-brand" id="logo">RBTech</router-link>
-          <button type="button" id="cartbtn" data-bs-toggle="modal" :data-bs-target="'#cart'"><i class="fa-solid fa-cart-shopping"></i></button>
+          <button type="button" id="cartbtn" data-bs-toggle="modal" :data-bs-target="'#cart'"><i class="fa-solid fa-cart-shopping">{{ num }}</i></button>
           
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar">
@@ -161,6 +161,18 @@ export default {
   mounted() {
     this.$store.dispatch('admincheck')
   },
-
+  computed: {
+    num: function () {
+      let Cnum = this.$store.state.cart;
+      if (Cnum === null || Cnum === undefined) {
+        Cnum = 0;
+        return Cnum;
+      } else {
+        // Cnum.length
+        let i = Cnum.length;
+        return (i);
+      }
+    },
+  }
 }
 </script>

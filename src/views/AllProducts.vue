@@ -31,6 +31,9 @@
                 </router-link>
             </div>
         </div>
+        <div v-else>
+            <div class="spinner"></div>
+        </div>
     </div>
     <Footer />
 </template>
@@ -61,7 +64,44 @@ form {
     width: 100%;
     margin-bottom: 75px;
 }
+/* From uiverse.io by @EmmaxPlay */
+.spinner {
+ position: relative;
+ width: 60px;
+ height: 60px;
+ border-radius: 50%;
+}
 
+.spinner::before,
+.spinner:after {
+ content: "";
+ position: absolute;
+ border-radius: inherit;
+}
+
+.spinner:before {
+ width: 100%;
+ height: 100%;
+ background-image: linear-gradient(0deg, #ffffff 0%, #9f007c 100%);
+ animation: spin8932 .5s infinite linear;
+ margin-left: 580px;
+}
+
+.spinner:after {
+ width: 85%;
+ height: 85%;
+ background-image: url('https://i.postimg.cc/mgwFTjqR/Purple-Smoke-Black-Background.jpg');
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ margin-left: 610px;
+}
+
+@keyframes spin8932 {
+ to {
+  transform: rotate(360deg);
+ }
+}
 </style>
 
 <script>
