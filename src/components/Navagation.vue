@@ -1,14 +1,23 @@
 <template>
   <nav class="navbar fixed-top">
     <div class="container-fluid">
-      <router-link to="/" class="navbar-brand" id="logo">RBTech</router-link>
-          <button type="button" id="cartbtn" data-bs-toggle="modal" :data-bs-target="'#cart'"><i class="fa-solid fa-cart-shopping">{{ num }}</i></button>
-          
+      <router-link to="/" class="navbar-brand" id="logo">RBTech
+        <router-link to="/userprofile"><img v-if="this.$store.state.user != null" id="userimg"
+            :src="this.$store.state.user.Image" alt=""></router-link>
+      </router-link>
+      
+      
+          <button v-if="this.$store.state.user != null" type="button" id="cartbtn" data-bs-toggle="modal" :data-bs-target="'#cart'"><i
+              class="fa-solid fa-cart-shopping">{{ num }}</i></button>
+        
+      
+
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
         aria-controls="offcanvasNavbar">
         <span id="toggler" class="navbar-toggler-icon"></span>
       </button>
-      <div class="offcanvas offcanvas-end fw-bolder" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas offcanvas-end fw-bolder" tabindex="-1" id="offcanvasNavbar"
+        aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <button id="close" type="button" class="btn-close text-white" data-bs-dismiss="offcanvas"
             aria-label="Close"></button>
@@ -27,27 +36,43 @@
             <li class="nav-item">
               <router-link class="nav-link" to="/allproducts">All Products</router-link>
             </li>
+
             <li class="nav-item">
-              <router-link class="nav-link" to="/register">Register</router-link>
+              <div v-if="this.$store.state.user == null">
+                <router-link class="nav-link" to="/register">Register</router-link>
+              </div>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/login">Login</router-link>
+              <div v-if="this.$store.state.user == null">
+                <router-link class="nav-link" to="/login">Login</router-link>
+              </div>
+
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/admin">Admin</router-link>
+              <div v-if="this.$store.state.user != null">
+                <div v-if="this.$store.state.user.Role == 'Admin'">
+                  <router-link class="nav-link" to="/admin">Admin</router-link>
+                </div>
+              </div>
+              
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="nav-link" to="/userprofile">Userprofile</router-link>
-            </li>
+            </li> -->
             <li class="nav-item">
-              <router-link class="nav-link" to="/users">Users</router-link>
+              <div v-if="this.$store.state.user != null">
+                <div v-if="this.$store.state.user.Role == 'Admin'">
+                  <router-link class="nav-link" to="/users">Users</router-link>
+                </div>
+              </div>
+              
             </li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
-  <cart/>
+  <cart />
 </template>
 
 <style scoped>
@@ -57,6 +82,12 @@
 
 .offcanvas {
   background-color: #280037;
+}
+
+#userimg {
+  width: 50px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 li {
@@ -86,69 +117,80 @@ nav a.router-link-exact-active {
 
 #logo {
   font-weight: bolder;
-  
+
 }
-#cartbtn{
-        position: absolute;
-        right: 5%;
-        top: 13%;
-        width: 60px;
-        height: 42px;
-        border-radius:10% ;
-    }
-.navbar-toggler{
-  background-color:#EFEFEF;
+
+#cartbtn {
+  position: absolute;
+  right: 5%;
+  top: 18%;
+  width: 60px;
+  height: 42px;
+  border-radius: 10%;
+}
+
+.navbar-toggler {
+  background-color: #EFEFEF;
 }
 
 @media only screen and (min-width:300px) and (max-width:320px) {
-  #cartbtn{
-        right: 25%;
-    }
+  #cartbtn {
+    right: 25%;
+  }
 }
+
 @media only screen and (min-width:320px) and (max-width: 375px) {
-  #cartbtn{
-        right: 22%;
-    }
+  #cartbtn {
+    right: 22%;
+  }
 }
+
 @media only screen and (min-width:375px) and (max-width: 425px) {
-  #cartbtn{
-        right: 22%;
-    }
+  #cartbtn {
+    right: 22%;
+  }
 }
+
 @media only screen and (min-width:425px) and (max-width: 500px) {
-  #cartbtn{
-        right: 18%;
-    }
+  #cartbtn {
+    right: 18%;
+  }
 }
+
 @media only screen and (min-width:500px) and (max-width: 600px) {
-  #cartbtn{
-        right: 15%;
-    }
+  #cartbtn {
+    right: 15%;
+  }
 }
+
 @media only screen and (min-width:600px) and (max-width: 768px) {
-  #cartbtn{
-        right: 12%;
-    }
+  #cartbtn {
+    right: 12%;
+  }
 }
+
 @media only screen and (min-width:768px) and (max-width: 850px) {
-  #cartbtn{
-        right: 10%;
-    }
+  #cartbtn {
+    right: 10%;
+  }
 }
+
 @media only screen and (min-width:850px) and (max-width: 950px) {
-  #cartbtn{
-        right: 10%;
-    }
+  #cartbtn {
+    right: 10%;
+  }
 }
+
 @media only screen and (min-width:950px) and (max-width: 1024px) {
-  #cartbtn{
-        right: 10%;
-    }
+  #cartbtn {
+    right: 10%;
+  }
 }
+
 @media only screen and (min-width:1024px) and (max-width: 1440px) {
-  #cartbtn{
-        right: 8%;
-    }
+  #cartbtn {
+    right: 8%;
+  }
 }
 </style>
 

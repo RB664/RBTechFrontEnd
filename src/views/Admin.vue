@@ -1,7 +1,7 @@
 <template>
   <Navbar/>
     <div id="admin" class="container">
-        <table class="table">
+        <table class="table" >
             <thead>
                 <tr>
                     <th>ID</th>

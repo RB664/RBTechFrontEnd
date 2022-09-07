@@ -27,6 +27,7 @@ img {
     height: auto;
     object-fit: cover;
 }
+
 </style>
 
 <script>

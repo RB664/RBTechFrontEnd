@@ -22,7 +22,10 @@
   <div v-if="msg">
     {{msg}}
   </div>
-  <button class="btn form-control" type="submit">Register</button>
+  
+    <button class="btn form-control" type="submit">Register</button>
+  
+  
   <div><p>Already registered click here to <router-link to="/login">Login</router-link></p></div>
 </form>
 </div>
@@ -55,7 +58,7 @@
     data() {
         return {
             Name: "",
-            Image: "",
+            Image: "https://i.postimg.cc/gjpsQRvG/User.jpg",
             Email: "",
             Password: "",
             clicked: false

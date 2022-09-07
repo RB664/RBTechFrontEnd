@@ -15,7 +15,7 @@
             <tr v-for="user in users" :key="user">
                 <td>{{user.userID}}</td>
                 <td>{{user.Name}}</td>
-                <td><img id="userimg" :scr="user.Image" alt=""></td>
+                <td><img id="userimg" v-bind:scr="user.Image" alt=""></td>
                 <td>{{user.Email}}</td>
                 <td>{{user.Password}}</td>
                 <td><button @click="this.$store.dispatch('deleteUser', user.userID)"><i
@@ -51,12 +51,11 @@ export default {
     border: 1px black;
     color: white;
     margin-top: 100px;
-    left:50%;
 }
 
-#productimg {
-    width: 100%;
-    height: auto;
+#userimg {
+    width: 100px;
+    height: 100px;
 }
 
 #Users{

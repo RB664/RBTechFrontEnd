@@ -1,7 +1,7 @@
 import {
   createStore
 } from 'vuex'
-
+import router from '@/router'
 export default createStore({
   state: {
     products: null,
@@ -134,6 +134,7 @@ export default createStore({
           console.log(data)
           console.log(data.msg)
           context.state.msg = data.msg
+          router.push('/login')
         })
     },
     login: async (context, payload) => {

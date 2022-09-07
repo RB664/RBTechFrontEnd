@@ -21,7 +21,9 @@
                     Information is wrong
                 </div>
             </div>
-            <button class="btn form-control" type="submit">Login</button>
+            
+                <button class="btn form-control" type="submit">Login</button>
+            
             <div>Not registered click here to <router-link to="/register">Register</router-link>
             </div>
         </form>

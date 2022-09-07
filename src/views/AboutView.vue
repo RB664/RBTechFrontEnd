@@ -25,9 +25,6 @@
   color: white;
   margin-bottom: 150px;
 }
-#about{
-
-}
 </style>
 
 <script>

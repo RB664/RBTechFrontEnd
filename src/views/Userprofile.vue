@@ -11,9 +11,6 @@
                 Logout
             </button>
         </div>
-        <div v-else>
-        Login to View your Profile
-    </div>
     </div>
     
     <Footer />
