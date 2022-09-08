@@ -122,7 +122,7 @@ nav a.router-link-exact-active {
 
 #cartbtn {
   position: absolute;
-  right: 5%;
+  right: 5.9%;
   top: 18%;
   width: 60px;
   height: 42px;

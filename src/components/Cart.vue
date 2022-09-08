@@ -18,18 +18,12 @@
                                     <p id="price">Price: R{{ item.Price }}</p>
                                     <button @click="this.$store.dispatch('deleteCart', item)">Remove Product</button>
                                 </div>
-                                <div class="card-footer">
-                                    <button @click="this.$store.dispatch('clearCart')">Clear Cart</button>
-                                </div>
                             </div>
+                            <button id="clearcart" @click="this.$store.dispatch('clearCart')">Clear Cart</button>
                         </div>
                         <div v-else>
                             <p>Your cart is empty</p>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -40,6 +34,9 @@
 <style>
 #Cart{
     text-align: center;
+}
+#clearcart{
+    margin-top: 20px;
 }
 </style>
 

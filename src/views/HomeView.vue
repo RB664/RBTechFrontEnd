@@ -12,7 +12,7 @@
 }
 #welcoming{
   margin-top:300px;
-  font-size:75px ;
+  font-size:50px ;
 }
 </style>
 

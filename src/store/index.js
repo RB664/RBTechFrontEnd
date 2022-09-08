@@ -35,7 +35,7 @@ export default createStore({
       }
     },
     getUsers: async (context) => {
-      fetch("http://localhost:4023/user")
+      fetch("https://rbtech.herokuapp.com/user")
       .then((res) => res.json())
       .then((data) => {
         context.state.users = data.users
@@ -43,12 +43,12 @@ export default createStore({
       })
     },
     getUser: async (context, id) => {
-      fetch(`http://localhost:4023/user/${id}`)
+      fetch(`https://rbtech.herokuapp.com/user/${id}`)
         .then((res) => res.json())
         .then(data => context.state.singleUser = data.user)
       },
     deleteUser: async (context, id) => {
-      await fetch(`http://localhost:4023/user/${id}`, {
+      await fetch(`https://rbtech.herokuapp.com/user/${id}`, {
           method: 'DELETE',
         })
         .then(data => data.json())
@@ -57,8 +57,53 @@ export default createStore({
           context.dispatch('getUsers')
         });
     },
+    editUser: async (context, user) => {
+      console.log(user.userID);
+      // fetch("http://localhost:4023/user/" + user.userID, {
+      fetch("https://rbtech.herokuapp.com/user/" + user.userID, {
+        method: "PUT",
+        body: JSON.stringify(user),
+        headers:{
+          "Content-type": "application/json; charset=UTF-8",
+          "x-auth-token": context.state.token
+        }
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        context.dispatch("getUser", context.state.singleUser.userID)
+      })
+    },
+    // editSUser: async (context, user) => {
+    //   // console.log(user);
+    //   fetch("https://rbtech.herokuapp.com/user/" + user.userID, {
+    //     method: "PUT",
+    //     body: JSON.stringify(user),
+    //     headers:{
+    //       "Content-type": "application/json; charset=UFT-8",
+    //     }
+    //   })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data.results);
+    //     context.dispatch("getUser",user.userID)
+    //   })
+    // },
+    deleteSUser: async (context, userid) => {
+      fetch(`https://gpu-land.herokuapp.com/users/${userid}`, {
+      // fetch(`http://localhost:3001/users/${userid}`, {
+        method: "DELETE",
+      })
+        .then((users) => users.json())
+        .then((data) => {
+          console.log(data.msg);
+          context.state.user = null
+          context.state.cart = null
+          router.push('/login');
+        });
+    },
     getProducts: async (context) => {
-      fetch("http://localhost:4023/products")
+      fetch("https://rbtech.herokuapp.com/products")
         .then((res) => res.json())
         .then((data) => {
           context.state.products = data.products
@@ -66,13 +111,13 @@ export default createStore({
         })
     },
     getProduct: async (context, id) => {
-      fetch(`http://localhost:4023/products/${id}`)
+      fetch(`https://rbtech.herokuapp.com/products/${id}`)
         .then((res) => res.json())
         .then(data => context.state.product = data.product)
         .then(console.log(context.state.product));
     },
     deleteProduct: async (context, id) => {
-      await fetch(`http://localhost:4023/products/${id}`, {
+      await fetch(`https://rbtech.herokuapp.com/products/${id}`, {
           method: 'DELETE',
         })
         .then(data => context.state.product = data.product)
@@ -87,7 +132,7 @@ export default createStore({
         Price
       } = payload
 
-      fetch('http://localhost:4023/products/', {
+      fetch('https://rbtech.herokuapp.com/products/', {
           method: 'POST',
           body: JSON.stringify({
             Name: Name,
@@ -105,8 +150,8 @@ export default createStore({
     },
     editProduct(context, product) {
       console.log(product);
-      fetch(`http://localhost:4023/products/${product.productID}`, {
-          method: "PATCH",
+      fetch(`https://rbtech.herokuapp.com/products/${product.productID}`, {
+          method: "PUT",
           body: JSON.stringify(product),
           headers: {
             'Content-type': 'application/json; charset=UTF-8',
@@ -119,7 +164,7 @@ export default createStore({
         })
     },
     register: async (context, payload) => {
-      await fetch("http://localhost:4023/user/register", {
+      await fetch("https://rbtech.herokuapp.com/user/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -138,7 +183,7 @@ export default createStore({
         })
     },
     login: async (context, payload) => {
-      await fetch("http://localhost:4023/user/login", {
+      await fetch("https://rbtech.herokuapp.com/user/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -150,13 +195,13 @@ export default createStore({
         .then(res => res.json())
         .then((data) => {
           context.commit('stateUser', data.user[0])
-          console.log(data);
+          console.log(data.msg);
         })
     },
     getcart: async (context, id) => {
       id = context.state.user.userID
       // console.log(id);
-      await fetch("http://localhost:4023/user/" + id + "/cart", {
+      await fetch("https://rbtech.herokuapp.com/user/" + id + "/cart", {
           method: "GET",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -176,7 +221,7 @@ export default createStore({
     addCart: async (context, item, id) => {
       id = context.state.user.userID;
       console.log(item);
-      await fetch("http://localhost:4023/user/" + id + "/cart", {
+      await fetch("https://rbtech.herokuapp.com/user/" + id + "/cart", {
           method: "POST",
           body: JSON.stringify(item),
           headers: {
@@ -192,7 +237,7 @@ export default createStore({
     },
     clearCart: async (context, id) => {
       id = context.state.user.userID;
-      await fetch("http://localhost:4023/user/" + id + "/cart", {
+      await fetch("https://rbtech.herokuapp.com/user/" + id + "/cart", {
           method: "DELETE",
           headers: {
             "Content-type": "application/json; charset=UTF-8",
@@ -209,7 +254,7 @@ export default createStore({
       id = context.state.user.userID;
       console.log(list);
       await fetch(
-          "http://localhost:4023/user/" + id + "/cart/" + list.cart_id, {
+          "https://rbtech.herokuapp.com/user/" + id + "/cart/" + list.cart_id, {
             method: "DELETE",
             headers: {
               "Content-type": "application/json; charset=UTF-8",

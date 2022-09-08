@@ -27,7 +27,9 @@ img {
     height: auto;
     object-fit: cover;
 }
-
+#posters{
+    margin: 10px;
+}
 </style>
 
 <script>
