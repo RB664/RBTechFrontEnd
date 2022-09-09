@@ -98,8 +98,9 @@ export default createStore({
         .then((users) => users.json())
         .then((data) => {
           console.log(data.msg);
-          context.state.user = null
-          context.state.cart = null
+          this.$store.state.user = null
+            this.$store.state.cart = null
+            localStorage.removeItem('user');
           router.push('/login');
         });
     },
