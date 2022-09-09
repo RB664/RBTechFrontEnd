@@ -18,7 +18,7 @@
                 <td><img id="userimg" :src="user.Image" alt=""></td>
                 <td>{{user.Email}}</td>
                 <td>{{user.Password}}</td>
-                <td><button @click="this.$store.dispatch('deleteUser', user.userID)"><i
+                <td v-if="user.Role !== 'Admin'"><button @click="this.$store.dispatch('deleteUser', user.userID)"><i
                                 class="fa-solid fa-trash-can"></i></button></td>
             </tr>
         </tbody>

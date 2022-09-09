@@ -13,7 +13,10 @@
                     <i class="fa-solid fa-pen"></i>
                 </button>
                 
-                <button id="btns" ><i class="fa-solid fa-trash-can"></i></button>
+                
+                <button v-if="user[0].Role !== 'Admin'"  @click="this.$store.dispatch('deleteSUser', user[0].userID)">
+                    <i class="fa-solid fa-trash-can"></i>
+                    </button>
             </div>
             <button id="logout" class="custom-btn btn form-control" type="button" @click="logout">
                 Logout

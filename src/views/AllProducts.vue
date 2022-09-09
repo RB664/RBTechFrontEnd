@@ -5,7 +5,6 @@
             <div class="row" id="formrow">
                 <div class="col-lg-4">
                     <select class="form-control" name="" id="Price" v-model="Price" @change="SortPrice">
-                        <option value="All" disabled>Sort by Price</option>
                         <option value="All">All</option>
                         <option value="asc">Higher Price</option>
                         <option value="desc">Lower Price</option>

@@ -8,7 +8,7 @@
             <img src="https://i.postimg.cc/2SpQh0Qn/Workstations.jpg" alt="">
         </div>
         <div id="posters">
-            <img src="https://i.postimg.cc/VNfbWpd0/Laptop-Deals.jpg" alt="">
+            <img src="https://i.postimg.cc/j2f90k3F/Laptop.webp" alt="">
         </div>
         <div id="posters">
             <img src="https://i.postimg.cc/fT7Lq54c/Gaming-PC-s.jpg" alt="">
@@ -25,10 +25,10 @@
 img {
     width: 95%;
     height: auto;
-    object-fit: cover;
 }
 #posters{
     margin: 10px;
+    object-fit: cover;
 }
 </style>
 

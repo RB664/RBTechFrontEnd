@@ -19,6 +19,9 @@
                                     <button @click="this.$store.dispatch('deleteCart', item)">Remove Product</button>
                                 </div>
                             </div>
+                            <div id="total">
+                                Total: R{{total}}.00
+                            </div>
                             <button id="clearcart" @click="this.$store.dispatch('clearCart')">Clear Cart</button>
                         </div>
                         <div v-else>
@@ -32,10 +35,11 @@
 </template>
 
 <style>
-#Cart{
+#Cart {
     text-align: center;
 }
-#clearcart{
+
+#clearcart {
     margin-top: 20px;
 }
 </style>
@@ -47,6 +51,15 @@ export default {
         Cart() {
             return this.$store.state.cart;
         },
+        total() {
+            let prices = this.$store.state.cart;
+            if (prices != null) {
+                let sum = prices.reduce((x, cart) => {
+                    return x + cart.Price;
+                }, 0);
+                return (((sum)))
+            }
+        }
     },
 };
 

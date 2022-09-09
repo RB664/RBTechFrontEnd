@@ -90,7 +90,7 @@ export default createStore({
     //   })
     // },
     deleteSUser: async (context, userid) => {
-      fetch(`https://gpu-land.herokuapp.com/users/${userid}`, {
+      fetch(`https://rbtech.herokuapp.com/user/${userid}`, {
       // fetch(`http://localhost:3001/users/${userid}`, {
         method: "DELETE",
       })
@@ -196,6 +196,7 @@ export default createStore({
         .then((data) => {
           context.commit('stateUser', data.user[0])
           console.log(data.msg);
+          router.push('/allproducts')
         })
     },
     getcart: async (context, id) => {
