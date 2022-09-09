@@ -53,9 +53,9 @@ export default createStore({
         })
         .then(data => data.json())
         .then((data) => {
+          localStorage.clear();
           console.log(data.msg  )
           context.dispatch('getUsers')
-          localStorage.clear();
         });
     },
     editUser: async (context, user) => {
