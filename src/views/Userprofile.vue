@@ -77,7 +77,7 @@ export default {
         logout() {
             this.$store.state.user = null
             this.$store.state.cart = null
-            localStorage.removeItem('user')
+            localStorage.clear();
             this.$router.push('/')
         }
     },
